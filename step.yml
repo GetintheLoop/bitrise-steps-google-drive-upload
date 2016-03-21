@@ -1,0 +1,20 @@
+title: "Google Drive Upload Step"
+summary: A step for uploading IPA file to Google Drive
+description: |-
+  A step for uploading build IPA file to Google Drive
+website: https://github.com/...
+source_code_url: https://github.com/...
+support_url: https://github.com/.../issues
+host_os_tags:
+  - osx-10.10
+project_type_tags:
+  - ios
+type_tags:
+  - script
+is_requires_admin_user: true
+is_always_run: false
+is_skippable: false
+dependencies:
+  - manager: brew
+    name: git
+run_if: ""
