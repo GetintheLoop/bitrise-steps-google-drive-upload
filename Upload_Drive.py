@@ -11,8 +11,8 @@ BITRISEIO_DRIVE_SECRET_URL = os.environ.get('BITRISEIO_DRIVE_SECRET_URL')
 BITRISE_IPA_PATH = os.environ.get('BITRISE_IPA_PATH')
 GOOGLE_DRIVE_FOLDER_KEY = os.environ.get('GOOGLE_DRIVE_FOLDER_KEY')
 BITRISE_DSYM_PATH = os.environ.get('BITRISE_DSYM_PATH')
-APP_VERSION_NUMBER = os.environ.get('APP_VERSION_NUMBER')
-APP_BUILD_NUMBER = os.environ.get('APP_BUILD_NUMBER')
+APP_VERSION_NUMBER = os.environ.get('APP_VERSION_NUMBER') if os.environ.get('APP_VERSION_NUMBER') else '0'
+APP_BUILD_NUMBER = os.environ.get('APP_BUILD_NUMBER') if os.environ.get('APP_BUILD_NUMBER') else '0'
 
 secretFileName = "client_secret.json"
 folder_id = GOOGLE_DRIVE_FOLDER_KEY
