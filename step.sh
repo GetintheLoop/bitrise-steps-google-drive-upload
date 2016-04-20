@@ -13,11 +13,12 @@ echo "Running script..."
 
 # export variables for python script
 export BITRISEIO_DRIVE_SECRET_URL
-export BITRISE_IPA_PATH
 export GOOGLE_DRIVE_FOLDER_KEY
+export BITRISE_IPA_PATH
 export BITRISE_DSYM_PATH
 export APP_VERSION_NUMBER
 export APP_BUILD_NUMBER
+export uploadBuildFiles
 
 FILES=(${file1} ${file2} ${file3})
 

@@ -14,6 +14,8 @@ BITRISE_DSYM_PATH = os.environ.get('BITRISE_DSYM_PATH')
 APP_VERSION_NUMBER = os.environ.get('APP_VERSION_NUMBER') if os.environ.get('APP_VERSION_NUMBER') else '0'
 APP_BUILD_NUMBER = os.environ.get('APP_BUILD_NUMBER') if os.environ.get('APP_BUILD_NUMBER') else '0'
 
+uploadBuildFiles = os.environ.get('uploadBuildFiles')
+
 secretFileName = "client_secret.json"
 folder_id = GOOGLE_DRIVE_FOLDER_KEY
 
@@ -52,8 +54,21 @@ def upload(fileMetaDataList):
 def getDefaultFileNameForiOSBuild(names):
     return "-".join(names)
 
-IPAFileName = getFileName(BITRISE_IPA_PATH)
-DSYMFileName = getFileName(BITRISE_DSYM_PATH)
+def prepareiOSUploadData():
+    IPAFileName = getFileName(BITRISE_IPA_PATH)
+    DSYMFileName = getFileName(BITRISE_DSYM_PATH)
+
+    fileMetaDataList = []
+
+    IPAFileNameForUpload = getDefaultFileNameForiOSBuild([APP_VERSION_NUMBER,APP_BUILD_NUMBER,IPAFileName])
+    fileMetaData = {'name':IPAFileNameForUpload, 'path':BITRISE_IPA_PATH, 'mimetype':'application/zip'}
+    fileMetaDataList.append(fileMetaData)
+
+    DSYMFileNameForUpload = getDefaultFileNameForiOSBuild([APP_VERSION_NUMBER,APP_BUILD_NUMBER,DSYMFileName])
+    fileMetaData = {'name':DSYMFileNameForUpload, 'path':BITRISE_DSYM_PATH, 'mimetype':'application/zip'}
+    fileMetaDataList.append(fileMetaData)
+
+    return fileMetaDataList
 
 if BITRISEIO_DRIVE_SECRET_URL:
     print "Downloading secret file"
@@ -61,18 +76,13 @@ if BITRISEIO_DRIVE_SECRET_URL:
     print "Download completed"
 
 fileMetaDataList = []
-
-IPAFileNameForUpload = getDefaultFileNameForiOSBuild([APP_VERSION_NUMBER,APP_BUILD_NUMBER,IPAFileName])
-fileMetaData = {'name':IPAFileNameForUpload, 'path':BITRISE_IPA_PATH, 'mimetype':'application/zip'}
-fileMetaDataList.append(fileMetaData)
-
-DSYMFileNameForUpload = getDefaultFileNameForiOSBuild([APP_VERSION_NUMBER,APP_BUILD_NUMBER,DSYMFileName])
-fileMetaData = {'name':DSYMFileNameForUpload, 'path':BITRISE_DSYM_PATH, 'mimetype':'application/zip'}
-fileMetaDataList.append(fileMetaData)
+if uploadBuildFiles == "yes":
+    fileMetaDataList = prepareiOSUploadData()
 
 for filePath in sys.argv[1:]:
     if filePath != "NOFILE":
         fileMetaData = {'name':getFileName(filePath), 'path':filePath, 'mimetype':'application/zip'}
         fileMetaDataList.append(fileMetaData)
 
-upload(fileMetaDataList)
+if len(fileMetaDataList)>0:
+    upload(fileMetaDataList)

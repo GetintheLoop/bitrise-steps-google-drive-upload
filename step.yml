@@ -47,3 +47,12 @@ inputs:
       is_expand: false
       is_required: false
       is_dont_change_value: true
+  - uploadBuildFiles: "yes"
+    opts:
+      title: "Upload iOS build files?"
+      description: |
+        Change to no disable uploading build files
+      value_options:
+        - "yes"
+        - "no"
+      is_required: false
