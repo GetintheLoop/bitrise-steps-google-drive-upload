@@ -4,6 +4,7 @@ from apiclient import discovery
 from apiclient import errors
 from apiclient.http import MediaFileUpload
 import sys
+import os
 import urllib
 
 def downloadFileFromURL(url,fileName):
@@ -27,14 +28,12 @@ def upload(service, fileNameForUpload, localPath, folderId, mimetype):
     service.files().create(body=file_metadata,media_body=media,fields='id').execute()
     print 'Upload completed'
 
-BITRISEIO_DRIVE_SECRET_URL = sys.argv[1]
-BITRISE_IPA_PATH = sys.argv[2]
-GOOGLE_DRIVE_FOLDER_KEY = sys.argv[3]
-BITRISE_BUILD_NUMBER = sys.argv[4]
-BITRISE_GIT_COMMIT = sys.argv[5]
-BITRISE_DSYM_PATH = sys.argv[6]
-APP_VERSION_NUMBER = sys.argv[7]
-APP_BUILD_NUMBER = sys.argv[8]
+BITRISEIO_DRIVE_SECRET_URL = os.environ.get('BITRISEIO_DRIVE_SECRET_URL')
+BITRISE_IPA_PATH = os.environ.get('BITRISE_IPA_PATH')
+GOOGLE_DRIVE_FOLDER_KEY = os.environ.get('GOOGLE_DRIVE_FOLDER_KEY')
+BITRISE_DSYM_PATH = os.environ.get('BITRISE_DSYM_PATH')
+APP_VERSION_NUMBER = os.environ.get('APP_VERSION_NUMBER')
+APP_BUILD_NUMBER = os.environ.get('APP_BUILD_NUMBER')
 
 IPAFileName = getIPAFileName(BITRISE_IPA_PATH)
 DSYMFileName = getIPAFileName(BITRISE_DSYM_PATH)
