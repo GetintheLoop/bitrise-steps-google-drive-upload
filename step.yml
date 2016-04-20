@@ -19,14 +19,31 @@ dependencies:
     name: git
 run_if: ""
 inputs:
-  - example_step_input: Default Value - you can leave this empty if you want to
+  - file1: NOFILE
     opts:
-      title: "Example Step Input"
-      summary: Summary. No more than 2-3 sentences.
+      title: "File path for upload to google drive"
+      summary: By default it is no file for uploading
       description: |
-        Description of this input.
-        Can be Markdown formatted text.
+        Give a valid file path for uploading
       is_expand: false
-      is_required: true
+      is_required: false
       is_dont_change_value: true
       value_options: []
+  - file2: NOFILE
+    opts:
+      title: "File path for upload to google drive"
+      summary: By default it is no file for uploading
+      description: |
+        Give a valid file path for uploading
+      is_expand: false
+      is_required: false
+      is_dont_change_value: true
+  - file3: NOFILE
+    opts:
+      title: "File path for upload to google drive"
+      summary: By default it is no file for uploading
+      description: |
+        Give a valid file path for uploading
+      is_expand: false
+      is_required: false
+      is_dont_change_value: true

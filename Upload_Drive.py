@@ -21,7 +21,7 @@ def downloadFileFromURL(url,fileName):
     downloadingFile = urllib.URLopener()
     downloadingFile.retrieve(url, fileName)
 
-def getIPAFileName(pathToIPA):
+def getFileName(pathToIPA):
     if len(pathToIPA):
         list = pathToIPA.split('/')
         return list[-1]
@@ -52,8 +52,8 @@ def upload(fileMetaDataList):
 def getDefaultFileNameForiOSBuild(names):
     return "-".join(names)
 
-IPAFileName = getIPAFileName(BITRISE_IPA_PATH)
-DSYMFileName = getIPAFileName(BITRISE_DSYM_PATH)
+IPAFileName = getFileName(BITRISE_IPA_PATH)
+DSYMFileName = getFileName(BITRISE_DSYM_PATH)
 
 if BITRISEIO_DRIVE_SECRET_URL:
     print "Downloading secret file"
@@ -69,5 +69,10 @@ fileMetaDataList.append(fileMetaData)
 DSYMFileNameForUpload = getDefaultFileNameForiOSBuild([APP_VERSION_NUMBER,APP_BUILD_NUMBER,DSYMFileName])
 fileMetaData = {'name':DSYMFileNameForUpload, 'path':BITRISE_DSYM_PATH, 'mimetype':'application/zip'}
 fileMetaDataList.append(fileMetaData)
+
+for filePath in sys.argv[1:]:
+    if filePath != "NOFILE":
+        fileMetaData = {'name':getFileName(filePath), 'path':filePath, 'mimetype':'application/zip'}
+        fileMetaDataList.append(fileMetaData)
 
 upload(fileMetaDataList)
