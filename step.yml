@@ -25,28 +25,24 @@ inputs:
       summary: By default it is no file for uploading
       description: |
         Give a valid file path for uploading
-      is_expand: false
+      is_expand: true
       is_required: false
-      is_dont_change_value: true
-      value_options: []
   - file2: NOFILE
     opts:
       title: "File path for upload to google drive"
       summary: By default it is no file for uploading
       description: |
         Give a valid file path for uploading
-      is_expand: false
+      is_expand: true
       is_required: false
-      is_dont_change_value: true
   - file3: NOFILE
     opts:
       title: "File path for upload to google drive"
       summary: By default it is no file for uploading
       description: |
         Give a valid file path for uploading
-      is_expand: false
+      is_expand: true
       is_required: false
-      is_dont_change_value: true
   - uploadBuildFiles: "yes"
     opts:
       title: "Upload iOS build files?"
