@@ -1,7 +1,7 @@
 #!/bin/bash
 
 THIS_SCRIPTDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-DRIVE_API_LIB_PATH="${THIS_SCRIPTDIR}/drive_api"
+DRIVE_API_LIB_PATH="${THIS_SCRIPTDIR}/libs/drive_api"
 cd "${DRIVE_API_LIB_PATH}"
 
 echo "Installing Google Drive python Library..."
