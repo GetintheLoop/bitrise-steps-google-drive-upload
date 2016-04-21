@@ -81,6 +81,7 @@ if uploadBuildFiles == "yes":
 
 for filePath in sys.argv[1:]:
     if filePath != "NOFILE":
+        filePath = filePath[8:]
         fileMetaData = {'name':getFileName(filePath), 'path':filePath, 'mimetype':'application/zip'}
         fileMetaDataList.append(fileMetaData)
 
