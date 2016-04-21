@@ -20,6 +20,9 @@ export APP_VERSION_NUMBER
 export APP_BUILD_NUMBER
 export uploadBuildFiles
 
+echo "!!!!!!!!!${file1}"
+echo "!!!!!!!!!${file2}"
+
 FILES=(${file1} ${file2} ${file3})
 
 python Upload_Drive.py ${FILES[*]}
