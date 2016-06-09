@@ -7,6 +7,7 @@ import sys
 import os
 import urllib
 
+BITRISE_CLI = os.environ.get('BITRISE_CLI')
 BITRISEIO_DRIVE_SECRET_URL = os.environ.get('BITRISEIO_DRIVE_SECRET_URL')
 BITRISE_IPA_PATH = os.environ.get('BITRISE_IPA_PATH')
 GOOGLE_DRIVE_FOLDER_KEY = os.environ.get('GOOGLE_DRIVE_FOLDER_KEY')
@@ -70,7 +71,7 @@ def prepareiOSUploadData():
 
     return fileMetaDataList
 
-if BITRISEIO_DRIVE_SECRET_URL:
+if not BITRISE_CLI and BITRISEIO_DRIVE_SECRET_URL:
     print "Downloading secret file"
     downloadFileFromURL(BITRISEIO_DRIVE_SECRET_URL,secretFileName)
     print "Download completed"
