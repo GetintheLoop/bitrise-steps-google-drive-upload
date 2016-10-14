@@ -7,7 +7,7 @@ if $BITRISE_CLI = 'true'; then
 fi
 
 echo "Installing Google Drive python Library..."
-(cd "${DRIVE_API_LIB_PATH}" && python setup.py install --user)
+(cd "${DRIVE_API_LIB_PATH}" && python setup.py install --user --prefix=)
 
 echo "Drive Library installed"
 
